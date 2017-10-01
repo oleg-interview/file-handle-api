@@ -15,8 +15,8 @@ class Result(object):
         self.action = action
 
     def __str__(self):
-        # return "Action: {:>11};   Code: {:>4};   Message: {:<10}".format(self.action, self.status_code, self.text)
-        return "{}\nAction:\n  {}\nCode:\n  {}\nMessage: \n{}".format("="*20, self.action, self.status_code, self.text)
+        return "{}\nAction:\n  {}\nCode:\n  {}\nMessage: \n{}".format("=" * 20, self.action, self.status_code,
+                                                                      self.text)
 
 
 def url_request(url):
@@ -70,39 +70,39 @@ class FileHandleApi(object):
 
 if __name__ == "__main__":
     pass
-    endpoint = "77.222.149.50:1310"
-    fh_api = FileHandleApi(endpoint)
-
-    # data
-    VALID_USERNAME = "Abcde"
-    VALID_USERNAME = "test"
-    INVALID_USERNAME = "/"
-
-    VALID_FILENAME = "File01.txt"
-    VALID_FILENAME_NOT_EXIST = "not_exist.file"
-    INVALID_FILENAME = "/"
-
-    # examples of usage
-
-    print(fh_api.show_list(username=VALID_USERNAME))
-    print(fh_api.show_list(username=INVALID_USERNAME))
-
-    print(fh_api.create_file(filename=VALID_FILENAME, username=VALID_USERNAME))
-    print(fh_api.create_file(filename=VALID_FILENAME, username=INVALID_USERNAME))
-
-    print(fh_api.show_list(username=VALID_USERNAME))
-
-    print(fh_api.delete_file(filename=VALID_FILENAME, username=INVALID_USERNAME))
-    print(fh_api.delete_file(filename=VALID_FILENAME, username=VALID_USERNAME))
-    print(fh_api.delete_file(filename=VALID_FILENAME_NOT_EXIST, username=VALID_USERNAME))
-
-    print(fh_api.show_list(username=VALID_USERNAME))
-
-
-    # Clean:
-    for user in ("Abcde", "test", "testuser"):
-        files = fh_api.show_list(username=user).text.split()
-        print(user)
-        print(files)
-        for file in files:
-            fh_api.delete_file(filename=file, username=user)
+    # endpoint = "77.222.149.50:1310"
+    # fh_api = FileHandleApi(endpoint)
+    #
+    # # data
+    # VALID_USERNAME = "Abcde"
+    # VALID_USERNAME = "test"
+    # INVALID_USERNAME = "/"
+    #
+    # VALID_FILENAME = "File01.txt"
+    # VALID_FILENAME_NOT_EXIST = "not_exist.file"
+    # INVALID_FILENAME = "/"
+    #
+    # # examples of usage
+    #
+    # print(fh_api.show_list(username=VALID_USERNAME))
+    # print(fh_api.show_list(username=INVALID_USERNAME))
+    #
+    # print(fh_api.create_file(filename=VALID_FILENAME, username=VALID_USERNAME))
+    # print(fh_api.create_file(filename=VALID_FILENAME, username=INVALID_USERNAME))
+    #
+    # print(fh_api.show_list(username=VALID_USERNAME))
+    #
+    # print(fh_api.delete_file(filename=VALID_FILENAME, username=INVALID_USERNAME))
+    # print(fh_api.delete_file(filename=VALID_FILENAME, username=VALID_USERNAME))
+    # print(fh_api.delete_file(filename=VALID_FILENAME_NOT_EXIST, username=VALID_USERNAME))
+    #
+    # print(fh_api.show_list(username=VALID_USERNAME))
+    #
+    #
+    # # Clean:
+    # for user in ("Abcde", "test", "testuser"):
+    #     files = fh_api.show_list(username=user).text.split()
+    #     print(user)
+    #     print(files)
+    #     for file in files:
+    #         fh_api.delete_file(filename=file, username=user)

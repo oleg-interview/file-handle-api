@@ -36,7 +36,6 @@ def test_creation_valid_filenames(filename):
     assert result.status_code == 200 and result.text == "OK", "Create: Incorrect status code or text for valid file name"
 
 
-
 @pytest.mark.parametrize("filename", INVALID_FILENAMES)
 def test_creation_invalid_filenames(filename):
     result = api.create_file(username=VALID_USERNAME, filename=filename)
@@ -45,7 +44,6 @@ def test_creation_invalid_filenames(filename):
 
 
 def test_creation_file_duplicate():
-
     api.create_file(username=VALID_USERNAME, filename=VALID_FILENAME)
     api.create_file(username=VALID_USERNAME, filename=VALID_FILENAME)
 
@@ -70,7 +68,6 @@ def test_delete_existed_file():
 
 
 def test_delete_not_existed_file():
-
     # Delete existed files
     result = api.show_list(username=VALID_USERNAME)
     number_instance = result.text.splitlines().count(VALID_FILENAME)
@@ -80,4 +77,3 @@ def test_delete_not_existed_file():
     # Delete not existed files
     result = api.delete_file(username=VALID_USERNAME, filename=VALID_FILENAME)
     assert result.status_code == 400 and len(result.text) > 0, "Delete: Incorrect status code or no text"
-
