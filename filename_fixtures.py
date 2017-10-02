@@ -1,42 +1,33 @@
 # ^[^.][a-z0-9.]{1,15}$
 
 VALID_FILENAMES = (
-    "a",
-    "a.",
-    "a" * 7,
-    "a" * 15,
-    "1aaaa",
-    "aaaa1",
-    "1",
-    "1" * 5,
-    "1" * 15,
-    "1.",
-    "1.1",
-    "a." * 5,
-    "File01.txt"
+    ("Test method 'create' with valid 'filename' with minimal length", "ab"),
+    ("Test method 'create' with valid 'filename' with minimal length and 'dot' symbol", "a."),
+    ("Test method 'create' with valid 'filename' with minimal length and digit", "a1"),
+    ("Test method 'create' with valid 'filename' with digits only", "42"),
+    ("Test method 'create' with valid 'filename' with upper case letter on first place", "File.txt"),
+    ("Test method 'create' with valid 'filename' with maximal length", "m" * 16),
+    ("Test method 'create' with valid 'filename' with maximal length and digits only", "1" * 16),
+    ("Test method 'create' with valid 'filename' with length in range mixed letters, digits, dots", "File.12345.xlsx"),
 )
 
 INVALID_FILENAMES = (
-    "",
-    ".",
-    "." * 10,
-    ".a",
-    "a,",
-    "_a",
-    "-a",
-    "1",
-    "1111",
-    "_1111",
-    "-1111",
-    "a" * 16,
-    "1" * 16,
-    "_" * 5,
-    ":" * 5,
-    "A",
-    "A" * 4,
-    ":",
-    "/",
+    ("Test method 'create' with invalid 'filename': empty value", ""),
+    ("Test method 'create' with invalid 'filename': short length", "x"),
+    ("Test method 'create' with invalid 'filename': started from dot", ".o"),
+    ("Test method 'create' with invalid 'filename': too long", "f" * 17),
+    ("Test method 'create' with invalid 'filename': has character in uppercase not in beginning", "fFf"),
+    ("Test method 'create' with invalid 'filename': has space in the middle of a word ", "ss ss"),
+    ("Test method 'create' with invalid 'filename': has special symbol ',' in the middle of a word ", "sss,zzz"),
+    ("Test method 'create' with invalid 'filename': has special symbol '/' in the middle of a word ", "sss/zzz"),
+    ("Test method 'create' with invalid 'filename': has special symbol '-' in the middle of a word ", "sss-zzz"),
+    ("Test method 'create' with invalid 'filename': has special symbol '_' in the middle of a word ", "sss_zzz"),
+    ("Test method 'create' with invalid 'filename': has special symbol '^' in the middle of a word ", "sss^zzz"),
+    ("Test method 'create' with invalid 'filename': has special symbol '&' in the middle of a word ", "sss&zzz"),
+    ("Test method 'create' with invalid 'filename': has special symbol '@' in the middle of a word ", "sss@zzz"),
+    ("Test method 'create' with invalid 'filename': has special symbol '#' in the middle of a word ", "sss#zzz"),
+    ("Test method 'create' with invalid 'filename': has special symbol '=' in the middle of a word ", "sss=zzz"),
+    ("Test method 'create' with invalid 'filename': has special symbol '+' in the middle of a word ", "sss+zzz"),
+    ("Test method 'create' with invalid 'filename': very big value", "z" * 9999),
+
 )
-
-
-

@@ -13,34 +13,34 @@ VALID_FILENAME = "File01.txt"
 # test username pattern processing by api method LIST
 #
 
-@pytest.mark.parametrize("username", VALID_USERNAMES)
-def test_valid_usernames(username):
+@pytest.mark.parametrize("description, username", VALID_USERNAMES)
+def test_valid_usernames(description, username):
     result = api.show_list(username=username)
-    assert result.status_code == 200, "List: Incorrect status code for valid user name"
+    assert result.status_code == 200, description
 
 
-@pytest.mark.parametrize("username", INVALID_USERNAMES)
-def test_invalid_usernames(username):
+@pytest.mark.parametrize("description, username", INVALID_USERNAMES)
+def test_invalid_usernames(description, username):
     result = api.show_list(username=username)
-    assert result.status_code == 400 and len(result.text), "List: Incorrect status code or text for invalid user name"
+    assert result.status_code == 400 and len(result.text), description
 
 
 #
 # test filename pattern processing by api method CREATE
 #
 
-@pytest.mark.parametrize("filename", VALID_FILENAMES)
-def test_creation_valid_filenames(filename):
+@pytest.mark.parametrize("description, filename", VALID_FILENAMES)
+def test_creation_valid_filenames(description, filename):
     result = api.create_file(username=VALID_USERNAME, filename=filename)
     api.delete_file(username=VALID_USERNAME, filename=filename)
-    assert result.status_code == 200 and result.text == "OK", "Create: Incorrect status code or text for valid file name"
+    assert result.status_code == 200 and result.text == "OK", description
 
 
-@pytest.mark.parametrize("filename", INVALID_FILENAMES)
-def test_creation_invalid_filenames(filename):
+@pytest.mark.parametrize("description, filename", INVALID_FILENAMES)
+def test_creation_invalid_filenames(description, filename):
     result = api.create_file(username=VALID_USERNAME, filename=filename)
     api.delete_file(username=VALID_USERNAME, filename=filename)
-    assert result.status_code == 400 and len(result.text) > 0, "Create: Incorrect status code or text for invalid file name"
+    assert result.status_code == 400 and len(result.text) > 0, description
 
 
 def test_creation_file_duplicate():
